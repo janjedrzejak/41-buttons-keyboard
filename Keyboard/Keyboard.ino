@@ -6,8 +6,20 @@ void setup() {
   Serial.begin(9600); 
   pinMode(2, OUTPUT);
   pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
   digitalWrite(2, HIGH);
   digitalWrite(3, HIGH);
+  digitalWrite(4, HIGH);
+  digitalWrite(5, HIGH);
+  digitalWrite(6, HIGH);
+  digitalWrite(7, HIGH);
+  digitalWrite(8, HIGH);
+  digitalWrite(9, HIGH);
 }
 //Function - send note to serial port
 /*
@@ -22,14 +34,15 @@ void loop() {
   int _a0 = analogRead( A0 );
   float _atov = fmap(_a0, 0, 1023, 0.0, 5.0);
 
-  if(_atov < 1.3 && _atov > 1.2) {
+  /*
+  if(_atov < 1.3 && _atov > 1.15) {
   Serial.println("1;4");
   }
-  if(_atov >4.6 && _atov < 4.8) {
+  if(_atov > 4.7 && _atov < 4.85) {
   Serial.println("1;3");
   }
-
-  //Serial.println(_atov);
+  */
+  Serial.println(_atov);
   
-  delay(50);
+  delay(100);
 }
