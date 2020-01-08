@@ -5,6 +5,7 @@
 #define constVolState03 300; #define constVolState04 400;
 #define constVolState05 500; #define constVolState06 600;
 #define constVolState07 700; #define constVolState08 800;
+#define constDiff = 50;
 
 //-----------------------------------------------------------------
 void setup() {
@@ -16,30 +17,43 @@ void setup() {
   }
 }
 //Function - send note to serial port
-/*
 void noteOn(int cmd, int pitch, int velocity) {
   Serial.write(cmd);
   Serial.write(pitch);
   Serial.write(velocity);
 }
-*/
 
+//Function - check key from keyboard
 void keyCheck(int pin, int volState) {
+  switch(pin) {
+    case 0:
   
+         
+      break;
+    case 1:
+    
+      
+      break;
+    case 2:
+   
+      
+      break;
+    case 3:
+     
+      
+      break;
+    case 4:
+    
+      
+      break;
+    default:
+      break;
+  }
 }
 
 void loop() {
-  //read analog state
-  int a0 = analogRead( A0 );
-  int a1 = analogRead( A1 );
-  int a2 = analogRead( A2 );
-  int a3 = analogRead( A3 );
-  int a4 = analogRead( A4 );
-
-  /*
-  a0 > constVolState01 - 50 && a0 < constVolState01 + 50
-  a0 > constVolState02 - 50 && a0 < constVolState02 + 50
-  */
+ 
+  keyCheck(0, analogRead(A0));
   
   delay(100);
 }
