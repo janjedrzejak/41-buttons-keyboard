@@ -1,25 +1,19 @@
-float fmap(float x, float in_min, float in_max, float out_min, float out_max){
- return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-}
+//define voltage states on analog pins = address of line of buttons (min 0; max 1023)
+//  VALUES will be set after test process!!!
 
+#define constVolState01 100; #define constVolState02 200;
+#define constVolState03 300; #define constVolState04 400;
+#define constVolState05 500; #define constVolState06 600;
+#define constVolState07 700; #define constVolState08 800;
+
+//-----------------------------------------------------------------
 void setup() {
   Serial.begin(9600); 
-  pinMode(2, OUTPUT);
-  pinMode(3, OUTPUT);
-  pinMode(4, OUTPUT);
-  pinMode(5, OUTPUT);
-  pinMode(6, OUTPUT);
-  pinMode(7, OUTPUT);
-  pinMode(8, OUTPUT);
-  pinMode(9, OUTPUT);
-  digitalWrite(2, HIGH);
-  digitalWrite(3, HIGH);
-  digitalWrite(4, HIGH);
-  digitalWrite(5, HIGH);
-  digitalWrite(6, HIGH);
-  digitalWrite(7, HIGH);
-  digitalWrite(8, HIGH);
-  digitalWrite(9, HIGH);
+  Serial.println("41 buttons custom keyboard");
+  for(i=2; i<10; i++) {
+    pinMode(i, OUTPUT);               //set digital pins as output
+    digitalWrite(i, HIGH);            //set hight state
+  }
 }
 //Function - send note to serial port
 /*
@@ -29,29 +23,23 @@ void noteOn(int cmd, int pitch, int velocity) {
   Serial.write(velocity);
 }
 */
+
+void keyCheck(int pin, int volState) {
+  
+}
+
 void loop() {
   //read analog state
-  int _a0 = analogRead( A0 );
-  int _a1 = analogRead( A1 );
-  int _a2 = analogRead( A2 );
-  int _a3 = analogRead( A3 );
-  int _a4 = analogRead( A4 );
-  float _atov = fmap(_a0, 0, 1023, 0.0, 5.0);
+  int a0 = analogRead( A0 );
+  int a1 = analogRead( A1 );
+  int a2 = analogRead( A2 );
+  int a3 = analogRead( A3 );
+  int a4 = analogRead( A4 );
 
   /*
-  if(_atov < 1.3 && _atov > 1.15) {
-  Serial.println("1;4");
-  }
-  if(_atov > 4.7 && _atov < 4.85) {
-  Serial.println("1;3");
-  }
+  a0 > constVolState01 - 50 && a0 < constVolState01 + 50
+  a0 > constVolState02 - 50 && a0 < constVolState02 + 50
   */
-  if(_a0 <1015 || _a1 < 1015 || _a2 < 1015 || _a3 < 1015 || _a4 < 1015) {
-  Serial.println(_a0);
-  Serial.println(_a1);
-  Serial.println(_a2);
-  Serial.println(_a3);
-  Serial.println(_a4);
-  }
+  
   delay(100);
 }
