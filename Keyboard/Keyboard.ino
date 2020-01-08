@@ -32,6 +32,10 @@ void noteOn(int cmd, int pitch, int velocity) {
 void loop() {
   //read analog state
   int _a0 = analogRead( A0 );
+  int _a1 = analogRead( A1 );
+  int _a2 = analogRead( A2 );
+  int _a3 = analogRead( A3 );
+  int _a4 = analogRead( A4 );
   float _atov = fmap(_a0, 0, 1023, 0.0, 5.0);
 
   /*
@@ -42,7 +46,12 @@ void loop() {
   Serial.println("1;3");
   }
   */
-  Serial.println(_atov);
-  
+  if(_a0 <1015 || _a1 < 1015 || _a2 < 1015 || _a3 < 1015 || _a4 < 1015) {
+  Serial.println(_a0);
+  Serial.println(_a1);
+  Serial.println(_a2);
+  Serial.println(_a3);
+  Serial.println(_a4);
+  }
   delay(100);
 }
